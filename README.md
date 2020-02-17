@@ -1,4 +1,4 @@
-Date And Time Picker for Android
+**Date And Time Picker for Android**
 
 It's a simple lib written in **Kotlin** that init `DatePickerDialog` and when you choose your date, it automatically opens `TimePickerDialog`, and then it's unify complete date in a **callback**.
 
