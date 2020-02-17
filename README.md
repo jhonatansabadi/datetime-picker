@@ -21,8 +21,8 @@ Activity.showDateAndTimePicker("dd/MM/YYYY HH:mm") { dateFormatted ->
 }
 ```
 
-![Date Picker](date.jpg)
+<img src="images/date.jpg" width="200" height="400" />
 
-![Time Picker](time.jpg)
+<img src="images/time.jpg" width="200" height="400" />
 
 
