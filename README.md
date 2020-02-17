@@ -29,15 +29,21 @@ dependencies {
 
 **1 - Separete Date:**
 
+Call function only from `Activity`. The function will return a `callback` with complete and separete date.
+
+
 ```kotlin
-Activity.showDateAndTimePicker { year: Int, month: Int, dayOfMonth: Int, hourOfDay: Int, minute: Int ->  
+showDateAndTimePicker { year, month, dayOfMonth, hourOfDay, minute ->  
 	//your code
 }
  ```
 
 **2 - Complete date String with pattern:**
+
+Call function only from `Activity` and pass `pattern` and function will retorn date formatted as `String`
+
 ```kotlin
-Activity.showDateAndTimePicker("dd/MM/YYYY HH:mm") { dateFormatted ->  
+showDateAndTimePicker("dd/MM/YYYY HH:mm") { dateFormatted ->  
 	//your code
 }
 ```
