@@ -1,15 +1,19 @@
 package jhonatan.sabadi.datetimepicker
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DateAndTimePicker(
-    val activity: AppCompatActivity,
+    val activity: Activity,
     val callback: ((
         year: Int,
         month: Int,
@@ -23,8 +27,12 @@ class DateAndTimePicker(
     DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
 
+    private val customActivity by lazy {
+        activity as AppCompatActivity
+    }
+
     constructor(
-        activity: AppCompatActivity,
+        activity: Activity,
         dateFormat: String,
         stringFormattedCallback: (stringFormatted: String) -> Unit
     ) : this(
@@ -35,7 +43,7 @@ class DateAndTimePicker(
     )
 
     init {
-        DatePickerFragment(activity, this).show(activity.supportFragmentManager, "data_picker")
+        DatePickerFragment(activity, this).show(customActivity.supportFragmentManager, "data_picker")
     }
 
     private var year = 0
@@ -51,7 +59,7 @@ class DateAndTimePicker(
         TimePickerFragment(
             activity,
             this
-        ).show(activity.supportFragmentManager, "data_picker")
+        ).show(customActivity.supportFragmentManager, "data_picker")
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
@@ -88,7 +96,7 @@ class DateAndTimePicker(
 
 }
 
-inline fun AppCompatActivity.showDateAndTimePicker(
+inline fun Activity.showDateAndTimePicker(
     noinline callback: (
         year: Int,
         month: Int,
@@ -100,7 +108,7 @@ inline fun AppCompatActivity.showDateAndTimePicker(
     DateAndTimePicker(this, callback)
 }
 
-inline fun AppCompatActivity.showDateAndTimePicker(
+inline fun Activity.showDateAndTimePicker(
     datePattern: String,
     noinline callback: (
         dateFormatted: String
