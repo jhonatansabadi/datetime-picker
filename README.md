@@ -6,6 +6,27 @@ The goal was to simplify apps that need to work with date and time.
 
 As the application was written in kotlin, there is two extension functions to make it simpler.
 
+## Installation
+
+Add the JitPack repository in your build.gradle at the end of repositories:
+
+```css
+allprojects {
+	repositories {
+			...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+And add the dependency:
+
+```css
+dependencies {
+        implementation 'com.github.jhonatansabadi:datetime-picker:1.0.4'
+}
+
+```
+
 **1 - Separete Date:**
 
 ```kotlin
