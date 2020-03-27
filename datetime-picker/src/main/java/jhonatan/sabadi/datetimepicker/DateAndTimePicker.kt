@@ -32,7 +32,7 @@ class DateAndTimePicker(
 
     constructor(
         activity: Activity,
-        dateFormat: String,
+        dateFormat: String?,
         stringFormattedCallback: (stringFormatted: String) -> Unit
     ) : this(
         activity,
@@ -52,7 +52,10 @@ class DateAndTimePicker(
     )
 
     init {
-        DatePickerFragment(activity, this).show(customActivity.supportFragmentManager, "data_picker")
+        DatePickerFragment(activity, this).show(
+            customActivity.supportFragmentManager,
+            "data_picker"
+        )
     }
 
     private var year = 0
@@ -99,9 +102,11 @@ class DateAndTimePicker(
             set(year, month, dayOfMonth, hourOfDay, minute)
         }
         val date = calendar.time
-        val simpleDateFormat = SimpleDateFormat(datePattern)
-        val dateFormatted = simpleDateFormat.format(date)
-        stringFormattedCallback?.invoke(dateFormatted)
+        datePattern?.let {
+            val simpleDateFormat = SimpleDateFormat(datePattern)
+            val dateFormatted = simpleDateFormat.format(date)
+            stringFormattedCallback?.invoke(dateFormatted)
+        }
     }
 
     private fun formattedAsDateType() {

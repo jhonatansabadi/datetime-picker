@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jhonatan.sabadi.datetimepicker">
 
-    <application></application>
+    <application>
+        <activity android:name=".MainActivity"></activity>
+    </application>
 
 </manifest>

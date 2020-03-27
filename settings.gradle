@@ -1,3 +1,2 @@
+include ':datetime-activity', ':datetime-picker'
 rootProject.name='DateTimePicker'
-include ':app'
-include ':datetime-picker'

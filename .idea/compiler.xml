@@ -3,6 +3,10 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="datetime-picker.datetime-picker" target="1.8" />
+      <module name="datetimepicker-activity" target="1.8" />
+      <module name="DateTimePicker.datetime-activity" target="1.8" />
+      <module name="DateTimePicker.datetime-picker" target="1.8" />
+      <module name="DateTimePicker.datetimepicker-activity" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
