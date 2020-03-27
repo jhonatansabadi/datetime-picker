@@ -2,13 +2,11 @@ package jhonatan.sabadi.datetimepicker
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.SharedElementCallback
 import android.app.TimePickerDialog
-import android.content.Context
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,6 +19,7 @@ class DateAndTimePicker(
         hourOfDay: Int,
         minute: Int
     ) -> Unit)? = null,
+    val dateCallback: ((date: Date) -> Unit)? = null,
     val datePattern: String? = null,
     val stringFormattedCallback: ((stringFormatted: String) -> Unit)? = null
 ) :
@@ -38,8 +37,18 @@ class DateAndTimePicker(
     ) : this(
         activity,
         null,
+        null,
         dateFormat,
         stringFormattedCallback
+    )
+
+    constructor(
+        activity: Activity,
+        dateCallback: ((date: Date) -> Unit)?
+    ) : this(
+        activity,
+        null,
+        dateCallback
     )
 
     init {
@@ -70,7 +79,8 @@ class DateAndTimePicker(
          * Call functions
          */
         completeDate()
-        formattedDate()
+        formattedDateString()
+        formattedAsDateType()
 
     }
 
@@ -84,7 +94,7 @@ class DateAndTimePicker(
         )
     }
 
-    private fun formattedDate() {
+    private fun formattedDateString() {
         val calendar = Calendar.getInstance().apply {
             set(year, month, dayOfMonth, hourOfDay, minute)
         }
@@ -92,6 +102,14 @@ class DateAndTimePicker(
         val simpleDateFormat = SimpleDateFormat(datePattern)
         val dateFormatted = simpleDateFormat.format(date)
         stringFormattedCallback?.invoke(dateFormatted)
+    }
+
+    private fun formattedAsDateType() {
+        val calendar = Calendar.getInstance().apply {
+            set(year, month, dayOfMonth, hourOfDay, minute)
+        }
+        val date = calendar.time
+        dateCallback?.invoke(date)
     }
 
 }
@@ -115,4 +133,12 @@ inline fun Activity.showDateAndTimePicker(
     ) -> Unit
 ) {
     DateAndTimePicker(this, datePattern, callback)
+}
+
+inline fun Activity.showDateAndTimePicker(
+    noinline dateCallback: (
+        date: Date
+    ) -> Unit
+) {
+    DateAndTimePicker(this, dateCallback)
 }
