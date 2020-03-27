@@ -22,7 +22,7 @@ And add the dependency:
 
 ```
 dependencies {
-	 implementation 'com.github.jhonatansabadi:datetime-picker:1.0.5'
+	 implementation 'com.github.jhonatansabadi:datetime-picker:1.0.6'
  }
 
 ```
